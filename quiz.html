@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EcoSort | Quiz - Test Your Knowledge</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+
+<style>
+.quiz-page {
+min-height: 100vh;
+background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
+url("images/dustbin.jpeg");
+background-size: cover;
+background-position: center;
+padding: 80px 20px 40px;
+}
+
+.quiz-container {
+max-width: 800px;
+margin: 0 auto;
+padding: 30px;
+background: white;
+border-radius: 15px;
+box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.quiz-start {
+text-align: center;
+padding: 20px;
+}
+
+.quiz-start-icon {
+font-size: 4rem;
+color: #2ecc71;
+margin-bottom: 20px;
+animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+0%, 100% { transform: scale(1); }
+50% { transform: scale(1.1); }
+}
+
+.quiz-start h2 {
+color: #2c3e50;
+font-size: 2rem;
+margin-bottom: 15px;
+}
+
+.quiz-start p {
+color: #666;
+margin-bottom: 30px;
+font-size: 1.1rem;
+}
+
+.quiz-guidelines {
+text-align: left;
+background: #f8f9fa;
+padding: 25px;
+border-radius: 10px;
+margin-bottom: 30px;
+}
+
+.quiz-guidelines h3 {
+color: #2c3e50;
+margin-bottom: 15px;
+font-size: 1.2rem;
+}
+
+.quiz-guidelines ul {
+list-style: none;
+padding: 0;
+}
+
+.quiz-guidelines li {
+padding: 10px 0;
+border-bottom: 1px solid #e9ecef;
+display: flex;
+align-items: center;
+gap: 12px;
+}
+
+.quiz-guidelines li:last-child {
+border-bottom: none;
+}
+
+.quiz-guidelines li i {
+color: #2ecc71;
+width: 20px;
+}
+
+.quiz-start-btn {
+padding: 15px 50px;
+background: linear-gradient(135deg, #2ecc71, #27ae60);
+color: white;
+border: none;
+border-radius: 30px;
+font-size: 1.2rem;
+cursor: pointer;
+transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+position: relative;
+overflow: hidden;
+}
+
+.quiz-start-btn::before {
+content: '';
+position: absolute;
+top: 0;
+left: -100%;
+width: 100%;
+height: 100%;
+background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+transition: left 0.5s ease;
+}
+
+.quiz-start-btn:hover::before {
+left: 100%;
+}
+
+.quiz-start-btn:hover {
+transform: scale(1.08) rotate(1deg);
+box-shadow: 0 15px 35px rgba(46, 204, 113, 0.5);
+background: linear-gradient(135deg, #27ae60, #2ecc71);
+}
+
+.quiz-start-btn:active {
+transform: scale(0.98);
+}
+
+.quiz-header {
+text-align: center;
+margin-bottom: 30px;
+}
+
+.quiz-header h2 {
+color: #2c3e50;
+font-size: 2rem;
+margin-bottom: 10px;
+}
+
+.quiz-header p {
+color: #666;
+}
+
+.quiz-progress {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 25px;
+padding: 15px;
+background: #f8f9fa;
+border-radius: 10px;
+}
+
+.quiz-progress-text {
+font-weight: bold;
+color: #2c3e50;
+}
+
+.quiz-progress-bar {
+flex: 1;
+height: 10px;
+background: #e9ecef;
+border-radius: 5px;
+margin: 0 15px;
+overflow: hidden;
+}
+
+.quiz-progress-fill {
+height: 100%;
+background: linear-gradient(135deg, #2ecc71, #27ae60);
+border-radius: 5px;
+transition: width 0.4s ease;
+background-size: 20px 20px;
+animation: progressStripes 1s linear infinite;
+}
+
+@keyframes progressStripes {
+0% { background-position: 0 0; }
+100% { background-position: 20px 0; }
+}
+
+.quiz-score {
+font-weight: bold;
+color: #2ecc71;
+}
+
+.question-card {
+margin-bottom: 25px;
+}
+
+.question-text {
+font-size: 1.2rem;
+font-weight: 600;
+color: #2c3e50;
+margin-bottom: 20px;
+}
+
+.options-container {
+display: flex;
+flex-direction: column;
+gap: 12px;
+}
+
+.option-btn {
+padding: 15px 20px;
+border: 2px solid #e9ecef;
+border-radius: 10px;
+background: white;
+cursor: pointer;
+text-align: left;
+font-size: 1rem;
+transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+display: flex;
+align-items: center;
+gap: 12px;
+position: relative;
+overflow: hidden;
+}
+
+.option-btn::after {
+content: '';
+position: absolute;
+left: 0;
+top: 0;
+height: 100%;
+width: 0%;
+background: linear-gradient(90deg, rgba(46, 204, 113, 0.1), transparent);
+transition: width 0.35s ease;
+}
+
+.option-btn:hover:not(:disabled)::after {
+width: 100%;
+}
+
+.option-btn:hover:not(:disabled) {
+border-color: #2ecc71;
+background: #f8fff9;
+transform: translateY(-4px) scale(1.01);
+box-shadow: 0 10px 25px rgba(46, 204, 113, 0.3);
+}
+
+.option-btn:hover:not(:disabled) .option-icon {
+transform: scale(1.1);
+border-color: #2ecc71;
+color: #2ecc71;
+transition: all 0.3s ease;
+}
+
+.option-btn.correct {
+border-color: #27ae60;
+background: #d5f5e3 !important;
+transition: all 0.4s ease;
+animation: correctPulse 0.5s ease;
+}
+
+.option-btn.wrong {
+border-color: #c0392b;
+background: #fadbd8 !important;
+transition: all 0.4s ease;
+animation: wrongShake 0.4s ease;
+}
+
+@keyframes correctPulse {
+0% { transform: scale(1); }
+50% { transform: scale(1.02); }
+100% { transform: scale(1); }
+}
+
+@keyframes wrongShake {
+0%, 100% { transform: translateX(0); }
+25% { transform: translateX(-5px); }
+75% { transform: translateX(5px); }
+}
+
+.option-btn:disabled {
+cursor: default;
+}
+
+.option-btn .option-icon {
+width: 24px;
+height: 24px;
+border: 2px solid #666;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 0.8rem;
+}
+
+.option-btn.correct .option-icon {
+background: #27ae60;
+border-color: #27ae60;
+color: white;
+}
+
+.option-btn.wrong .option-icon {
+background: #c0392b;
+border-color: #c0392b;
+color: white;
+}
+
+.quiz-navigation {
+display: flex;
+justify-content: center;
+margin-top: 25px;
+}
+
+.quiz-btn {
+padding: 12px 40px;
+border: none;
+border-radius: 8px;
+font-size: 1rem;
+cursor: pointer;
+transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+position: relative;
+overflow: hidden;
+}
+
+.quiz-btn:disabled {
+opacity: 0.5;
+cursor: not-allowed;
+}
+
+.quiz-btn-next {
+background: linear-gradient(135deg, #2ecc71, #27ae60);
+color: white;
+position: relative;
+z-index: 1;
+}
+
+.quiz-btn-next::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: linear-gradient(135deg, #27ae60, #2ecc71);
+opacity: 0;
+transition: opacity 0.35s ease;
+z-index: -1;
+}
+
+.quiz-btn:hover:not(:disabled)::before {
+opacity: 1;
+}
+
+.quiz-btn:hover:not(:disabled) {
+transform: translateY(-3px) scale(1.02);
+box-shadow: 0 8px 20px rgba(46, 204, 113, 0.4);
+}
+
+.quiz-btn:active:not(:disabled) {
+transform: translateY(-1px) scale(1);
+}
+
+.quiz-result {
+text-align: center;
+padding: 40px;
+}
+
+.quiz-result-icon {
+font-size: 5rem;
+margin-bottom: 20px;
+}
+
+.quiz-result h3 {
+font-size: 2rem;
+color: #2c3e50;
+margin-bottom: 10px;
+}
+
+.quiz-result p {
+font-size: 1.2rem;
+color: #666;
+margin-bottom: 30px;
+}
+
+.quiz-result .score-display {
+font-size: 3rem;
+font-weight: bold;
+color: #2ecc71;
+margin-bottom: 20px;
+}
+
+.quiz-restart-btn {
+padding: 15px 40px;
+background: linear-gradient(135deg, #2ecc71, #27ae60);
+color: white;
+border: none;
+border-radius: 30px;
+font-size: 1.1rem;
+cursor: pointer;
+transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+position: relative;
+overflow: hidden;
+}
+
+.quiz-restart-btn::before {
+content: '';
+position: absolute;
+top: 0;
+left: -100%;
+width: 100%;
+height: 100%;
+background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+transition: left 0.5s ease;
+}
+
+.quiz-restart-btn:hover::before {
+left: 100%;
+}
+
+.quiz-restart-btn:hover {
+transform: scale(1.08) rotate(1deg);
+box-shadow: 0 15px 35px rgba(46, 204, 113, 0.5);
+background: linear-gradient(135deg, #27ae60, #2ecc71);
+}
+
+.quiz-restart-btn:active {
+transform: scale(0.98);
+}
+
+.quiz-hint {
+display: inline-block;
+margin-top: 15px;
+padding: 8px 15px;
+background: #e8f4fd;
+color: #2980b9;
+border-radius: 20px;
+font-size: 0.9rem;
+transition: all 0.3s ease;
+animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+from { opacity: 0; transform: translateY(10px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+.back-home {
+display: inline-block;
+margin-bottom: 20px;
+padding: 10px 20px;
+background: #2c3e50;
+color: white;
+text-decoration: none;
+border-radius: 8px;
+transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+position: relative;
+overflow: hidden;
+}
+
+.back-home::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: #2ecc71;
+opacity: 0;
+transition: opacity 0.35s ease;
+}
+
+.back-home:hover::before {
+opacity: 1;
+}
+
+.back-home:hover {
+background: #2ecc71;
+transform: translateX(-8px);
+}
+
+.back-home i {
+transition: transform 0.3s ease;
+}
+
+.back-home:hover i {
+transform: translateX(-4px);
+}
+
+.score-message {
+margin-top: 15px;
+padding: 12px 20px;
+border-radius: 8px;
+font-weight: bold;
+text-align: center;
+font-size: 1.1rem;
+}
+
+.score-message.correct {
+background: #d5f5e3;
+color: #27ae60;
+}
+
+.score-message.wrong {
+background: #fadbd8;
+color: #27ae60;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="logo">Eco<span>Sort</span></div>
+<nav>
+<a href="home.html"><i class="fas fa-home"></i> Home</a>
+<a href="home.html"><i class="fas fa-book"></i> Guide</a>
+<a href="quiz.html"><i class="fas fa-question-circle"></i> Quiz</a>
+</nav>
+</header>
+
+<div class="quiz-page">
+<a href="home.html" class="back-home"><i class="fas fa-arrow-left"></i> Back to Home</a>
+
+<div class="quiz-container">
+<div class="quiz-start" id="quizStart">
+<div class="quiz-start-icon">
+<i class="fas fa-clipboard-list"></i>
+</div>
+<h2>Welcome to the EcoSort Quiz!</h2>
+<p>Test your knowledge about waste segregation and recycling</p>
+
+<div class="quiz-guidelines">
+<h3><i class="fas fa-info-circle"></i> Quiz Guidelines</h3>
+<ul>
+<li><i class="fas fa-check"></i> Answer all 10 questions to complete the quiz</li>
+<li><i class="fas fa-check"></i> Each question has 4 options - choose the correct one</li>
+<li><i class="fas fa-check"></i> You will receive instant feedback with hints</li>
+<li><i class="fas fa-check"></i> You cannot move to the next question without answering</li>
+<li><i class="fas fa-check"></i> Your score will be shown at the end</li>
+<li><i class="fas fa-check"></i> Learn about proper waste disposal as you play!</li>
+</ul>
+</div>
+
+<button class="quiz-start-btn" onclick="startQuiz()">
+<i class="fas fa-play"></i> Start Quiz
+</button>
+</div>
+
+<div id="quizContent" style="display: none;">
+<div class="quiz-header">
+<h2><i class="fas fa-clipboard-check"></i> Test Your Knowledge</h2>
+<p>Answer these questions to learn more about waste segregation!</p>
+</div>
+
+<div class="quiz-progress">
+<span class="quiz-progress-text">Question <span id="currentQ">1</span> of <span id="totalQ">10</span></span>
+<div class="quiz-progress-bar">
+<div class="quiz-progress-fill" id="progressFill" style="width: 10%;"></div>
+</div>
+</div>
+
+<div class="question-card" id="questionCard">
+<p class="question-text" id="questionText"></p>
+<div class="options-container" id="optionsContainer"></div>
+</div>
+
+<div class="quiz-result" id="quizResult" style="display: none;">
+<div class="quiz-result-icon" id="resultIcon"></div>
+<h3>Quiz Completed!</h3>
+<p>Here is your final score:</p>
+<div class="score-display" id="finalScore">0/10</div>
+<p id="resultMessage"></p>
+<button class="quiz-restart-btn" onclick="restartQuiz()"><i class="fas fa-redo"></i> Try Again</button>
+</div>
+
+<div class="quiz-navigation">
+<button class="quiz-btn quiz-btn-next" id="nextBtn" onclick="nextQuestion()" disabled>Next <i class="fas fa-arrow-right"></i></button>
+</div>
+</div>
+
+</div>
+
+<script>
+var allQuizQuestions = [
+{
+question: "Which bin should you use for fruit peels and vegetable waste?",
+options: [
+{ text: "Green Bin (Organic)", correct: true },
+{ text: "Blue Bin (Recyclable)", correct: false },
+{ text: "Red Bin (Hazardous)", correct: false },
+{ text: "Black Bin (Residual)", correct: false }
+],
+hint: "Fruit peels are biodegradable and can be composted!"
+},
+{
+question: "Where should you dispose of a used plastic bottle?",
+options: [
+{ text: "Green Bin (Organic)", correct: false },
+{ text: "Blue Bin (Recyclable)", correct: true },
+{ text: "Red Bin (Hazardous)", correct: false },
+{ text: "Black Bin (Residual)", correct: false }
+],
+hint: "Plastic bottles can be recycled into new products!"
+},
+{
+question: "Which type of waste should NEVER be thrown in regular bins?",
+options: [
+{ text: "Food waste", correct: false },
+{ text: "Newspapers", correct: false },
+{ text: "Used batteries", correct: true },
+{ text: "Cardboard boxes", correct: false }
+],
+hint: "Batteries contain toxic chemicals that require special disposal!"
+},
+{
+question: "What should you do with a broken ceramic plate?",
+options: [
+{ text: "Recycle it", correct: false },
+{ text: "Compost it", correct: false },
+{ text: "Throw it in the Black Bin (Residual)", correct: true },
+{ text: "Bury it in the garden", correct: false }
+],
+hint: "Broken ceramics cannot be recycled and go to landfills!"
+},
+{
+question: "Which bin is for items that can be repurposed into new products?",
+options: [
+{ text: "Green Bin (Organic)", correct: false },
+{ text: "Blue Bin (Recyclable)", correct: true },
+{ text: "Red Bin (Hazardous)", correct: false },
+{ text: "Black Bin (Residual)", correct: false }
+],
+hint: "Blue represents recycling and can be turned into new items!"
+},
+{
+question: "Where should you dispose of expired medicines?",
+options: [
+{ text: "Green Bin (Organic)", correct: false },
+{ text: "Blue Bin (Recyclable)", correct: false },
+{ text: "Red Bin (Hazardous)", correct: true },
+{ text: "Black Bin (Residual)", correct: false }
+],
+hint: "Medicines can contaminate water and soil if not disposed properly!"
+},
+{
+question: "Can used tissues be recycled?",
+options: [
+{ text: "Yes, always", correct: false },
+{ text: "No, they go in the Black Bin", correct: true },
+{ text: "Only if clean", correct: false },
+{ text: "Yes, with paper", correct: false }
+],
+hint: "Used tissues are contaminated and cannot be recycled!"
+},
+{
+question: "What type of waste goes into the Green Bin?",
+options: [
+{ text: "Plastic wrappers", correct: false },
+{ text: "Biodegradable organic matter", correct: true },
+{ text: "Glass bottles", correct: false },
+{ text: "Old electronics", correct: false }
+],
+hint: "Green represents nature and biodegradable materials!"
+},
+{
+question: "Where should you dispose of paint thinner?",
+options: [
+{ text: "Green Bin (Organic)", correct: false },
+{ text: "Blue Bin (Recyclable)", correct: false },
+{ text: "Red Bin (Hazardous)", correct: true },
+{ text: "Black Bin (Residual)", correct: false }
+],
+hint: "Paint thinner contains harmful chemicals!"
+},
+{
+question: "What happens to waste in the Black Bin?",
+options: [
+{ text: "It gets recycled", correct: false },
+{ text: "It gets composted", correct: false },
+{ text: "It goes to landfills", correct: true },
+{ text: "It gets incinerated", correct: false }
+],
+hint: "Black Bin is for waste that cannot be recycled or composted!"
+},
+{
+question: "Can tea bags be composted?",
+options: [
+{ text: "No, never", correct: false },
+{ text: "Yes, in Green Bin", correct: true },
+{ text: "Only if empty", correct: false },
+{ text: "Only with paper", correct: false }
+],
+hint: "Tea bags are biodegradable organic waste!"
+},
+{
+question: "Where should you dispose of coffee grounds?",
+options: [
+{ text: "Blue Bin", correct: false },
+{ text: "Black Bin", correct: false },
+{ text: "Green Bin", correct: true },
+{ text: "Red Bin", correct: false }
+],
+hint: "Coffee grounds are organic and compostable!"
+},
+{
+question: "Can bread scraps be composted?",
+options: [
+{ text: "No, never", correct: false },
+{ text: "Yes, Green Bin", correct: true },
+{ text: "Only in Blue Bin", correct: false },
+{ text: "Only in Black Bin", correct: false }
+],
+hint: "Bread is organic food waste!"
+},
+{
+question: "Where should flower waste go?",
+options: [
+{ text: "Blue Bin", correct: false },
+{ text: "Black Bin", correct: false },
+{ text: "Green Bin", correct: true },
+{ text: "Red Bin", correct: false }
+],
+hint: "Flowers are biodegradable organic matter!"
+},
+{
+question: "Can grass clippings be composted?",
+options: [
+{ text: "No, they go to Black Bin", correct: false },
+{ text: "Yes, Green Bin", correct: true },
+{ text: "Only Blue Bin", correct: false },
+{ text: "They cannot be composted", correct: false }
+],
+hint: "Grass is natural organic material!"
+},
+{
+question: "Where do egg shells belong?",
+options: [
+{ text: "Blue Bin", correct: false },
+{ text: "Black Bin", correct: false },
+{ text: "Green Bin", correct: true },
+{ text: "Red Bin", correct: false }
+],
+hint: "Egg shells are biodegradable!"
+},
+{
+question: "Where should newspapers go?",
+options: [
+{ text: "Green Bin", correct: false },
+{ text: "Blue Bin", correct: true },
+{ text: "Black Bin", correct: false },
+{ text: "Red Bin", correct: false }
+],
+hint: "Newspapers can be recycled!"
+},
+{
+question: "Can cardboard boxes be recycled?",
+options: [
+{ text: "No, never", correct: false },
+{ text: "Yes, Blue Bin", correct: true },
+{ text: "Only Green Bin", correct: false },
+{ text: "Only Black Bin", correct: false }
+],
+hint: "Cardboard is 100% recyclable!"
+},
+{
+question: "Where should glass bottles go?",
+options: [
+{ text: "Green Bin", correct: false },
+{ text: "Blue Bin", correct: true },
+{ text: "Black Bin", correct: false },
+{ text: "Red Bin", correct: false }
+],
+hint: "Glass bottles can be recycled!"
+},
+{
+question: "Can plastic containers be recycled?",
+options: [
+{ text: "No, never", correct: false },
+{ text: "Yes, Blue Bin", correct: true },
+{ text: "Only Green Bin", correct: false },
+{ text: "Only Black Bin", correct: false }
+],
+hint: "Most plastic containers are recyclable!"
+},
+{
+question: "Where should aluminum cans go?",
+options: [
+{ text: "Green Bin", correct: false },
+{ text: "Blue Bin", correct: true },
+{ text: "Black Bin", correct: false },
+{ text: "Red Bin", correct: false }
+],
+hint: "Aluminum cans can be recycled!"
+},
+{
+question: "Can magazines be recycled?",
+options: [
+{ text: "No, never", correct: false },
+{ text: "Yes, Blue Bin", correct: true },
+{ text: "Only Green Bin", correct: false },
+{ text: "Only Black Bin", correct: false }
+],
+hint: "Magazines are paper and recyclable!"
+},
+{
+question: "Where should metal cans go?",
+options: [
+{ text: "Green Bin", correct: false },
+{ text: "Blue Bin", correct: true },
+{ text: "Black Bin", correct: false },
+{ text: "Red Bin", correct: false }
+],
+hint: "Metal cans are recyclable!"
+},
+{
+question: "Can old books be recycled?",
+options: [
+{ text: "No, never", correct: false },
+{ text: "Yes, Blue Bin", correct: true },
+{ text: "Only Green Bin", correct: false },
+{ text: "Only Black Bin", correct: false }
+],
+hint: "Books can be recycled as paper!"
+},
+{
+question: "Where should plastic bags go?",
+options: [
+{ text: "Green Bin", correct: false },
+{ text: "Blue Bin", correct: true },
+{ text: "Black Bin", correct: false },
+{ text: "Red Bin", correct: false }
+],
+hint: "Plastic bags can be recycled at special points!"
+},
+{
+question: "Can milk cartons be recycled?",
+options: [
+{ text: "No, never", correct: false },
+{ text: "Yes, Blue Bin", correct: true },
+{ text: "Only Green Bin", correct: false },
+{ text: "Only Black Bin", correct: false }
+],
+hint: "Milk cartons are recyclable!"
+},
+{
+question: "Where should glass jars go?",
+options: [
+{ text: "Green Bin", correct: false },
+{ text: "Blue Bin", correct: true },
+{ text: "Black Bin", correct: false },
+{ text: "Red Bin", correct: false }
+],
+hint: "Glass jars can be recycled!"
+},
+{
+question: "Can steel items be recycled?",
+options: [
+{ text: "No, never", correct: false },
+{ text: "Yes, Blue Bin", correct: true },
+{ text: "Only Green Bin", correct: false },
+{ text: "Only Black Bin", correct: false }
+],
+hint: "Steel is 100% recyclable!"
+},
+{
+question: "Where should water bottles go?",
+options: [
+{ text: "Green Bin", correct: false },
+{ text: "Blue Bin", correct: true },
+{ text: "Black Bin", correct: false },
+{ text: "Red Bin", correct: false }
+],
+hint: "Water bottles are recyclable!"
+},
+{
+question: "Can soda cans be recycled?",
+options: [
+{ text: "No, never", correct: false },
+{ text: "Yes, Blue Bin", correct: true },
+{ text: "Only Green Bin", correct: false },
+{ text: "Only Black Bin", correct: false }
+],
+hint: "Soda cans are aluminum and recyclable!"
+},
+{
+question: "Where should you dispose of old batteries?",
+options: [
+{ text: "Green Bin", correct: false },
+{ text: "Blue Bin", correct: false },
+{ text: "Red Bin", correct: true },
+{ text: "Black Bin", correct: false }
+],
+hint: "Batteries contain toxic chemicals!"
+},
+{
+question: "Can light bulbs be thrown in regular bins?",
+options: [
+{ text: "Yes, any bin", correct: false },
+{ text: "No, Red Bin only", correct: true },
+{ text: "Only Blue Bin", correct: false },
+{ text: "Only Black Bin", correct: false }
+],
+hint: "Light bulbs contain hazardous materials!"
+},
+{
+question: "Where should expired medicines go?",
+options: [
+{ text: "Green Bin", correct: false },
+{ text: "Blue Bin", correct: false },
+{ text: "Red Bin", correct: true },
+{ text: "Black Bin", correct: false }
+],
+hint: "Medicines require special hazardous waste disposal!"
+},
+{
+question: "Can chemicals be disposed in regular bins?",
+options: [
+{ text: "Yes, any bin", correct: false },
+{ text: "No, Red Bin only", correct: true },
+{ text: "Only Blue Bin", correct: false },
+{ text: "Only Black Bin", correct: false }
+],
+hint: "Chemicals are hazardous waste!"
+},
+{
+question: "Where should paint go?",
+options: [
+{ text: "Green Bin", correct: false },
+{ text: "Blue Bin", correct: false },
+{ text: "Red Bin", correct: true },
+{ text: "Black Bin", correct: false }
+],
+hint: "Paint is hazardous waste!"
+},
+{
+question: "Can pesticides be thrown in regular bins?",
+options: [
+{ text: "Yes, any bin", correct: false },
+{ text: "No, Red Bin only", correct: true },
+{ text: "Only Blue Bin", correct: false },
+{ text: "Only Black Bin", correct: false }
+],
+hint: "Pesticides contain toxic chemicals!"
+},
+{
+question: "Where should CFL bulbs go?",
+options: [
+{ text: "Green Bin", correct: false },
+{ text: "Blue Bin", correct: false },
+{ text: "Red Bin", correct: true },
+{ text: "Black Bin", correct: false }
+],
+hint: "CFL bulbs contain mercury!"
+},
+{
+question: "Can motor oil be disposed in regular bins?",
+options: [
+{ text: "Yes, any bin", correct: false },
+{ text: "No, Red Bin only", correct: true },
+{ text: "Only Blue Bin", correct: false },
+{ text: "Only Black Bin", correct: false }
+],
+hint: "Motor oil is hazardous!"
+},
+{
+question: "Where should nail polish go?",
+options: [
+{ text: "Green Bin", correct: false },
+{ text: "Blue Bin", correct: false },
+{ text: "Red Bin", correct: true },
+{ text: "Black Bin", correct: false }
+],
+hint: "Nail polish contains toxic chemicals!"
+},
+{
+question: "Can bleach be thrown in regular bins?",
+options: [
+{ text: "Yes, any bin", correct: false },
+{ text: "No, Red Bin only", correct: true },
+{ text: "Only Blue Bin", correct: false },
+{ text: "Only Black Bin", correct: false }
+],
+hint: "Bleach is a corrosive chemical!"
+},
+{
+question: "Where should electronics go?",
+options: [
+{ text: "Green Bin", correct: false },
+{ text: "Blue Bin", correct: false },
+{ text: "Red Bin", correct: true },
+{ text: "Black Bin", correct: false }
+],
+hint: "Electronics contain toxic components - e-waste!"
+},
+{
+question: "Can acid be disposed in regular bins?",
+options: [
+{ text: "Yes, any bin", correct: false },
+{ text: "No, Red Bin only", correct: true },
+{ text: "Only Blue Bin", correct: false },
+{ text: "Only Black Bin", correct: false }
+],
+hint: "Acids are corrosive and hazardous!"
+},
+{
+question: "Where should medicine tablets go?",
+options: [
+{ text: "Green Bin", correct: false },
+{ text: "Blue Bin", correct: false },
+{ text: "Red Bin", correct: true },
+{ text: "Black Bin", correct: false }
+],
+hint: "Medicines require special disposal!"
+},
+{
+question: "Can spray cans be thrown in regular bins?",
+options: [
+{ text: "Yes, any bin", correct: false },
+{ text: "No, Red Bin only", correct: true },
+{ text: "Only Blue Bin", correct: false },
+{ text: "Only Black Bin", correct: false }
+],
+hint: "Spray cans may be pressurized and hazardous!"
+},
+{
+question: "Where should fluorescent tubes go?",
+options: [
+{ text: "Green Bin", correct: false },
+{ text: "Blue Bin", correct: false },
+{ text: "Red Bin", correct: true },
+{ text: "Black Bin", correct: false }
+],
+hint: "Fluorescent tubes contain mercury!"
+},
+{
+question: "Can thermometers be thrown in regular bins?",
+options: [
+{ text: "Yes, any bin", correct: false },
+{ text: "No, Red Bin only", correct: true },
+{ text: "Only Blue Bin", correct: false },
+{ text: "Only Black Bin", correct: false }
+],
+hint: "Thermometers may contain mercury!"
+},
+{
+question: "Where should mobile batteries go?",
+options: [
+{ text: "Green Bin", correct: false },
+{ text: "Blue Bin", correct: false },
+{ text: "Red Bin", correct: true },
+{ text: "Black Bin", correct: false }
+],
+hint: "Mobile batteries are hazardous e-waste!"
+},
+{
+question: "Where should diapers go?",
+options: [
+{ text: "Green Bin", correct: false },
+{ text: "Blue Bin", correct: false },
+{ text: "Red Bin", correct: false },
+{ text: "Black Bin", correct: true }
+],
+hint: "Diapers cannot be recycled!"
+},
+{
+question: "Can cigarette butts be recycled?",
+options: [
+{ text: "Yes, Blue Bin", correct: false },
+{ text: "Yes, Green Bin", correct: false },
+{ text: "No, Black Bin only", correct: true },
+{ text: "Yes, Red Bin", correct: false }
+],
+hint: "Cigarette butts go to residual waste!"
+},
+{
+question: "Where should broken glass go?",
+options: [
+{ text: "Green Bin", correct: false },
+{ text: "Blue Bin", correct: false },
+{ text: "Red Bin", correct: false },
+{ text: "Black Bin", correct: true }
+],
+hint: "Broken glass that can't be recycled goes to residual!"
+},
+{
+question: "Can chip packets be recycled?",
+options: [
+{ text: "Yes, Blue Bin", correct: false },
+{ text: "Yes, Green Bin", correct: false },
+{ text: "No, Black Bin only", correct: true },
+{ text: "Yes, Red Bin", correct: false }
+],
+hint: "Chip packets are not recyclable!"
+},
+{
+question: "Where should sanitary products go?",
+options: [
+{ text: "Green Bin", correct: false },
+{ text: "Blue Bin", correct: false },
+{ text: "Red Bin", correct: false },
+{ text: "Black Bin", correct: true }
+],
+hint: "Sanitary products go to residual waste!"
+},
+{
+question: "Can used napkins be recycled?",
+options: [
+{ text: "Yes, Blue Bin", correct: false },
+{ text: "Yes, Green Bin", correct: false },
+{ text: "No, Black Bin only", correct: true },
+{ text: "Yes, Red Bin", correct: false }
+],
+hint: "Used napkins are contaminated!"
+},
+{
+question: "Where should plastic wrap go?",
+options: [
+{ text: "Green Bin", correct: false },
+{ text: "Blue Bin", correct: false },
+{ text: "Red Bin", correct: false },
+{ text: "Black Bin", correct: true }
+],
+hint: "Plastic wrap is not recyclable!"
+},
+{
+question: "Can broken mirrors be recycled?",
+options: [
+{ text: "Yes, Blue Bin", correct: false },
+{ text: "Yes, Green Bin", correct: false },
+{ text: "No, Black Bin only", correct: true },
+{ text: "Yes, Red Bin", correct: false }
+],
+hint: "Broken mirrors go to residual waste!"
+},
+{
+question: "Where should dust go?",
+options: [
+{ text: "Green Bin", correct: false },
+{ text: "Blue Bin", correct: false },
+{ text: "Red Bin", correct: false },
+{ text: "Black Bin", correct: true }
+],
+hint: "Dust goes to residual waste!"
+},
+{
+question: "Can candy wrappers be recycled?",
+options: [
+{ text: "Yes, Blue Bin", correct: false },
+{ text: "Yes, Green Bin", correct: false },
+{ text: "No, Black Bin only", correct: true },
+{ text: "Yes, Red Bin", correct: false }
+],
+hint: "Candy wrappers are not recyclable!"
+},
+{
+question: "Where should face masks go?",
+options: [
+{ text: "Green Bin", correct: false },
+{ text: "Blue Bin", correct: false },
+{ text: "Red Bin", correct: false },
+{ text: "Black Bin", correct: true }
+],
+hint: "Face masks cannot be recycled!"
+},
+{
+question: "Can thermocol be recycled?",
+options: [
+{ text: "Yes, Blue Bin", correct: false },
+{ text: "Yes, Green Bin", correct: false },
+{ text: "No, Black Bin only", correct: true },
+{ text: "Yes, Red Bin", correct: false }
+]
+}
+];
+
+function shuffleArray(array){
+for(let i=array.length-1;i>0;i--){
+let j=Math.floor(Math.random()*(i+1));
+[array[i],array[j]]=[array[j],array[i]];
+}
+return array;
+}
+
+var quizQuestions = shuffleArray(allQuizQuestions).slice(0,10);
+
+var currentQuestion = 0;
+var score = 0;
+var userAnswers = [];
+
+function startQuiz(){
+document.getElementById("quizStart").style.display="none";
+document.getElementById("quizContent").style.display="block";
+initQuiz();
+}
+
+function initQuiz(){
+currentQuestion = 0;
+score = 0;
+userAnswers = [];
+
+quizQuestions = shuffleArray(allQuizQuestions).slice(0,10);
+
+document.getElementById("quizResult").style.display="none";
+document.getElementById("questionCard").style.display="block";
+document.getElementById("nextBtn").style.display="block";
+
+document.getElementById("totalQ").innerText = quizQuestions.length;
+
+loadQuestion();
+}
+
+function loadQuestion(){
+
+var q = quizQuestions[currentQuestion];
+
+document.getElementById("questionText").innerText = q.question;
+document.getElementById("currentQ").innerText = currentQuestion + 1;
+
+document.getElementById("progressFill").style.width =
+((currentQuestion+1)/quizQuestions.length*100)+"%";
+
+var container = document.getElementById("optionsContainer");
+container.innerHTML = "";
+
+q.options.forEach(function(option,index){
+
+var btn = document.createElement("button");
+btn.className="option-btn";
+
+btn.innerHTML =
+"<span class='option-icon'>"+
+String.fromCharCode(65+index)+
+"</span>"+option.text;
+
+btn.onclick=function(){
+selectOption(index,option.correct);
+};
+
+container.appendChild(btn);
+
+});
+
+updateNavigation();
+}
+
+function selectOption(selectedIndex,isCorrect){
+
+var buttons=document.querySelectorAll(".option-btn");
+
+buttons.forEach(function(btn){
+btn.disabled=true;
+});
+
+userAnswers[currentQuestion]=selectedIndex;
+
+if(isCorrect){
+score++;
+}
+
+buttons[selectedIndex].style.background="#ecf0f1";
+buttons[selectedIndex].style.borderColor="#2c3e50";
+
+updateNavigation();
+}
+
+function updateNavigation(){
+
+var nextBtn=document.getElementById("nextBtn");
+
+var answered=userAnswers[currentQuestion]!==undefined;
+
+nextBtn.disabled=!answered;
+
+if(currentQuestion===quizQuestions.length-1){
+nextBtn.innerHTML="See Results";
+}else{
+nextBtn.innerHTML="Next";
+}
+}
+
+function nextQuestion(){
+
+if(currentQuestion < quizQuestions.length-1){
+
+currentQuestion++;
+loadQuestion();
+
+}else{
+
+showResult();
+
+}
+}
+
+function showResult(){
+
+document.getElementById("questionCard").style.display="none";
+document.getElementById("quizResult").style.display="block";
+
+document.getElementById("finalScore").innerText =
+score+"/"+quizQuestions.length;
+
+var resultDiv=document.createElement("div");
+
+quizQuestions.forEach(function(q,index){
+
+var correct=q.options.find(o=>o.correct).text;
+var user=q.options[userAnswers[index]].text;
+
+var block=document.createElement("p");
+
+block.innerHTML =
+"<b>Q"+(index+1)+":</b> "+q.question+
+"<br>Your Answer: "+user+
+"<br>Correct Answer: <b>"+correct+"</b><br><br>";
+
+resultDiv.appendChild(block);
+
+});
+
+document.getElementById("quizResult").appendChild(resultDiv);
+
+document.getElementById("nextBtn").style.display="none";
+}
+
+function restartQuiz(){
+
+var resultDiv=document.getElementById("quizResult");
+var answers=resultDiv.querySelectorAll("p");
+
+answers.forEach(function(p){
+p.remove();
+});
+
+initQuiz();
+}
+
+document.addEventListener("DOMContentLoaded",function(){
+
+document.getElementById("quizStart").style.display="block";
+document.getElementById("quizContent").style.display="none";
+
+});
+
+function selectOption(selectedIndex,isCorrect){
+
+var buttons=document.querySelectorAll(".option-btn");
+
+buttons.forEach(function(btn){
+btn.disabled=true;
+});
+
+userAnswers[currentQuestion]=selectedIndex;
+
+if(isCorrect){
+score++;
+}
+
+buttons[selectedIndex].style.background="lightgreen";
+buttons[selectedIndex].style.borderColor="black";
+buttons[selectedIndex].style.fontWeight="bold";  
+buttons[selectedIndex].style.color="black";
+
+updateNavigation();
+
+}
+
+</script>
+
+</body>
+
+</html>

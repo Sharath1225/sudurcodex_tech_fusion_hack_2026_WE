@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoSort | Waste Segregation Awareness</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   
+    <link rel="stylesheet" href="style.css">
+    
+
+    <style>
+        .about-section {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            padding: 40px;
+            margin: 30px auto;
+            border-radius: 15px;
+            color: white;
+            text-align: center;
+            animation: slideDown 0.5s ease;
+            max-width: 700px;
+            min-height: 250px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .about-section h2 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            color: #2ecc71;
+        }
+
+        .about-section .quote-box {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 4px solid #2ecc71;
+            margin-bottom: 20px;
+        }
+
+        .about-section .quote-text {
+            font-size: 1.3rem;
+            font-style: italic;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .about-section .quote-author {
+            font-size: 1rem;
+            color: #2ecc71;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">Eco<span>Sort</span></div>
+  
+
+
+        <nav>
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="#guide"><i class="fas fa-book"></i> Guide</a>
+            <a href="quiz.html"><i class="fas fa-question-circle"></i> Quiz</a>
+            <a href="#about"><i class="fas fa-info-circle"></i> About</a>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <h1>Don't Trash It, Sort It!</h1>
+        <p>Small actions in waste segregation can protect our planet.</p>
+    </div>
+
+    <div class="search-container">
+
+        <h2>Find the Correct Bin</h2>
+
+        <div class="search-box">
+
+            <div class="input-group">
+                <input type="text" id="searchInput" placeholder="Search waste item...">
+            </div>
+
+            <div id="suggestions"></div>
+
+            <button class="search-btn" onclick="findBin()">
+                <i class="fas fa-search"></i> Know Your Waste
+
+            </button>
+
+            <div id="result"></div>
+
+        </div>
+
+    </div>
+
+    <div class="container" id="guide">
+
+        <h2 class="section-title">Waste Categories</h2>
+
+        <div class="grid">
+
+            <div class="card organic">
+                <div class="card-front">
+                    <span class="icon">🍎</span>
+                    <h3>Organic Waste</h3>
+                    <p><strong>Green Bin</strong></p>
+                </div>
+
+                <div class="card-details">
+                    <p>
+                        Organic waste is any material originating from living organisms
+                        that is biodegradable and can be broken down by microorganisms
+                        into simpler substances.
+                    </p>
+
+                    <ul>
+                        <li>Food scraps</li>
+                        <li>Fruit peels</li>
+                        <li>Vegetable peels</li>
+                        <li>Tea bag</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card recyclable">
+                <div class="card-front">
+                    <span class="icon">♻️</span>
+                    <h3>Recyclable Waste</h3>
+                    <p><strong>Blue Bin</strong></p>
+                </div>
+
+                <div class="card-details">
+                    <p>
+                        Recyclable waste refers to materials that can be collected,
+                        processed, and repurposed into new products instead of being
+                        discarded as trash.
+                    </p>
+
+                    <ul>
+                        <li>Paper</li>
+                        <li>Plastic bottles</li>
+                        <li>Glass bottles</li>
+                        <li>Metal cans</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card hazardous">
+                <div class="card-front">
+                    <span class="icon">☣️</span>
+                    <h3>Hazardous Waste</h3>
+                    <p><strong>Red Bin</strong></p>
+                </div>
+
+                <div class="card-details">
+                    <p>
+                        Hazardous waste can be solid, liquid, or gaseous and is
+                        considered dangerous because it can cause harm if improperly
+                        handled, stored, or disposed.
+                    </p>
+
+                    <ul>
+                        <li>Batteries</li>
+                        <li>Medicines</li>
+                        <li>Paint</li>
+                        <li>Chemicals</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card residual">
+                <div class="card-front">
+                    <span class="icon">🗑️</span>
+                    <h3>Residual Waste</h3>
+                    <p><strong>Black Bin</strong></p>
+                </div>
+
+                <div class="card-details">
+                    <p>
+                        Residual waste consists of materials that cannot be reused,
+                        recycled, or composted and are usually sent to landfills.
+                    </p>
+
+                    <ul>
+                        <li>Diapers</li>
+                        <li>Tissues</li>
+                        <li>Dirty plastic</li>
+                        <li>Wrappers</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="about-section" id="about">
+        <h2><i class="fas fa-leaf"></i> Waste Segregation Matters</h2>
+        <div class="quote-box">
+            <p class="quote-text">
+                "Waste degradation is not just about disposing of trash it's about preserving our planet's future. 
+                Every piece of waste properly sorted is a step toward a cleaner, greener world for generations to come."
+            </p>
+            <p class="quote-author">— EcoSort Initiative</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>EcoSort Waste Awareness Project</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
+

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EcoSort | Home</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+.home-container {
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+text-align: center;
+padding: 20px;
+background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
+url("images/dustbin.jpeg");
+background-size: cover;
+background-position: center;
+}
+
+.home-content {
+color: white;
+max-width: 800px;
+}
+
+.home-logo {
+font-size: 3rem;
+font-weight: bold;
+margin-bottom: 30px;
+animation: fadeDown 1s;
+transition: transform 0.3s ease;
+}
+
+.home-logo:hover {
+transform: scale(1.05);
+}
+
+.home-logo span {
+color: var(--primary);
+transition: color 0.3s ease;
+}
+
+.home-logo:hover span {
+color: #27ae60;
+}
+
+.quote-container {
+background: rgba(0,0,0,0.5);
+padding: 40px;
+border-radius: 15px;
+margin-bottom: 40px;
+animation: fadeUp 1.3s;
+transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.quote-container:hover {
+background: rgba(0,0,0,0.6);
+transform: translateY(-5px);
+box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
+.quote {
+font-size: 1.8rem;
+font-style: italic;
+line-height: 1.6;
+margin-bottom: 15px;
+transition: transform 0.3s ease;
+}
+
+.quote-container:hover .quote {
+transform: scale(1.02);
+}
+
+.quote-author {
+font-size: 1rem;
+opacity: 0.8;
+transition: opacity 0.3s ease;
+}
+
+.quote-container:hover .quote-author {
+opacity: 1;
+}
+
+.start-btn {
+display: inline-block;
+padding: 15px 40px;
+background: linear-gradient(135deg,#2ecc71,#27ae60);
+color: white;
+text-decoration: none;
+border-radius: 30px;
+font-size: 1.2rem;
+font-weight: bold;
+transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+animation: fadeUp 1.6s;
+}
+
+.start-btn:hover {
+transform: scale(1.1);
+box-shadow: 0 15px 30px rgba(46, 204, 113, 0.4);
+}
+
+.start-btn:active {
+transform: scale(0.95);
+}
+
+@keyframes fadeDown {
+from {
+opacity: 0;
+transform: translateY(-30px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+
+@keyframes fadeUp {
+from {
+opacity: 0;
+transform: translateY(30px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+</style>
+
+</head>
+<body>
+
+<div class="home-container">
+
+<div class="home-content">
+
+<div class="home-logo">Eco<span>Sort</span></div>
+
+<div class="quote-container">
+<p class="quote">
+"Waste degradation is not just about disposing of trash it's about preserving our planet's future. 
+Every piece of waste properly sorted is a step toward a cleaner, greener world for generations to come."
+</p>
+<p class="quote-author">— EcoSort Initiative</p>
+</div>
+
+<a href="home.html" class="start-btn">Begin EcoSort →</a>
+
+</div>
+
+</div>
+
+</body>
+</html>
