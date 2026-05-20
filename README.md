@@ -221,35 +221,6 @@ Possible future improvements:
 
 ---
 
-## ▶️ How to Run the Project
-
-1. Download or clone the project
-2. Open the project folder
-3. Run `home.html` in a browser
-
-OR
-
-Use VS Code Live Server:
-
-```bash
-Right Click → Open with Live Server
-```
-
----
-
-## 📈 Learning Outcomes
-
-Through this project, users learn:
-
-* DOM manipulation
-* Event handling
-* JavaScript arrays & objects
-* CSS animations
-* Responsive web design
-* Interactive UI development
-
----
-
 ## 👨‍💻 Author
 
 Developed as an environmental awareness by Sharath, Akhilesh Shetty, Amith S Devadiga, Pranav.
