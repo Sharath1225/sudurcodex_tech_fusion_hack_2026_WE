@@ -1,6 +1,6 @@
 # EcoSort – Smart Waste Segregation & Quiz System
 
-## 🌱 Project Overview
+Project Overview
 
 EcoSort is an interactive waste segregation web application designed to help users identify the correct waste disposal category using an intelligent search system and an engaging quiz platform.
 
@@ -21,9 +21,9 @@ Users can:
 
 ---
 
-## 🚀 Features
+Features
 
-### 🔍 Smart Waste Search
+Smart Waste Search
 
 * Search waste items like:
 
@@ -38,7 +38,7 @@ Users can:
   * Bin color
   * Disposal explanation
 
-### ♻️ Waste Categories
+Waste Categories
 
 The system classifies waste into:
 
@@ -49,9 +49,8 @@ The system classifies waste into:
 | Hazardous  | Red       | Toxic and chemical waste        |
 | Residual   | Black     | Non-recyclable landfill waste   |
 
----
 
-### 🧠 Interactive Quiz System
+Interactive Quiz System
 
 * Randomly selects 10 questions
 * Multiple-choice quiz
@@ -60,9 +59,7 @@ The system classifies waste into:
 * Final score display
 * Restart functionality
 
----
-
-### ✨ Modern UI Features
+Modern UI Features
 
 * Animated buttons
 * Hover effects
@@ -71,25 +68,18 @@ The system classifies waste into:
 * Highlighted waste category cards
 * Smooth transitions and animations
 
----
 
-## 🛠️ Technologies Used
+Technologies Used
 
-### Frontend
+Frontend
 
 * HTML5
 * CSS3
 * JavaScript (Vanilla JS)
 
-### Libraries
+Project Structure
 
-* Font Awesome Icons
-
----
-
-## 📂 Project Structure
-
-```bash
+bash
 EcoSort/
 │
 ├── home.html
@@ -99,13 +89,11 @@ EcoSort/
 ├── images/
 │   └── dustbin.jpeg
 └── README.md
-```
 
----
 
-## ⚙️ How It Works
+How It Works
 
-### 1. Waste Search System
+1. Waste Search System
 
 The application contains a large waste database object:
 
@@ -127,7 +115,7 @@ When a user searches:
 
 ---
 
-### 2. Quiz Engine
+2. Quiz Engine
 
 Quiz questions are stored in an array:
 
@@ -150,16 +138,16 @@ Features include:
 
 ---
 
-## 🎨 UI Highlights
+UI Highlights
 
-### Animated Components
+Animated Components
 
 * Pulsing quiz icons
 * Hover scaling effects
 * Smooth button animations
 * Progress bar animations
 
-### Responsive Design
+Responsive Design
 
 The website is fully responsive and works on:
 
@@ -169,7 +157,7 @@ The website is fully responsive and works on:
 
 ---
 
-## 📚 Educational Purpose
+Educational Purpose
 
 This project helps users:
 
@@ -193,7 +181,7 @@ Possible future improvements:
 
 ---
 
-## 📸 Screens Included
+Screens Included
 
 * Home Page
 * Waste Search Section
@@ -203,30 +191,29 @@ Possible future improvements:
 
 ---
 
-## 🧪 Sample Waste Items Supported
-
-### Organic
+Sample Waste Items Supported
+Organic
 
 * Fruit peels
 * Bread
 * Tea bags
 * Coffee grounds
 
-### Recyclable
+Recyclable
 
 * Plastic bottles
 * Newspapers
 * Cardboard
 * Glass jars
 
-### Hazardous
+Hazardous
 
 * Batteries
 * Paint
 * Medicines
 * Electronics
 
-### Residual
+Residual
 
 * Diapers
 * Wrappers
@@ -235,41 +222,11 @@ Possible future improvements:
 
 ---
 
-## ▶️ How to Run the Project
 
-1. Download or clone the project
-2. Open the project folder
-3. Run `home.html` in a browser
+Author
 
-OR
-
-Use VS Code Live Server:
-
-```bash
-Right Click → Open with Live Server
-```
-
+Developed as an environmental awareness by Sharath, Amith S Devadiga, Akhilesh Shetty, Pranav
 ---
+License
 
-## 📈 Learning Outcomes
-
-Through this project, users learn:
-
-* DOM manipulation
-* Event handling
-* JavaScript arrays & objects
-* CSS animations
-* Responsive web design
-* Interactive UI development
-
----
-
-## 👨‍💻 Author
-
-Developed as an environmental awareness and educational web project using HTML, CSS, and JavaScript.
-
----
-
-## 📄 License
-
-This project is open-source and free to use for educational purposes.
+This project is created for educational and awareness purposes.
